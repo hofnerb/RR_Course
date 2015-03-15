@@ -11,16 +11,17 @@ library("xtable")
 
 This is our first knitr document.
 
-<<echo=TRUE, results='markup'>>=
+<<test name, echo=TRUE, results='markup'>>=
 x <- 1:10
 plot(x)
 print(x)
 @
 
-<<echo=TRUE, results='asis'>>=
+<<echo=TRUE, results='asis', fig.width=5, fig.height = 5, out.width="0.4\\textwidth">>=
 x <- 1:10
 plot(x)
 print(x)
+plot(rnorm(100))
 @
 
 % A latex comment
@@ -34,6 +35,28 @@ opts_chunk$set(echo = FALSE)
 <<create_table, results='asis'>>=
 TAB <- table(x)
 xtable(TAB)
+@
+
+
+Now use cache to speed up computations.
+
+<<first_cache, cache=TRUE>>=
+Sys.sleep(2)
+plot(1:3, main = "cached figure", xlab = "x")
+@
+
+<<random, cache=TRUE>>=
+set.seed(1234)
+rnorm(100)
+@
+
+<<>>=
+rnorm(1)
+@
+
+
+<<cache = TRUE, random_seed = rand_seed>>=
+rnorm(10)
 @
 
 
