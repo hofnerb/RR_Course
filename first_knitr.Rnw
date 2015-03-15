@@ -1,5 +1,10 @@
 \documentclass{article}
 
+<<load_packages, include=FALSE>>=
+library("xtable")
+@
+
+
 \begin{document}
 
 \section{First Heading}
@@ -17,5 +22,20 @@ x <- 1:10
 plot(x)
 print(x)
 @
+
+% A latex comment
+
+<<init, include=FALSE>>=
+## from now on no echo
+opts_chunk$set(echo = FALSE)
+@
+
+% For tables uses results = "asis"
+<<create_table, results='asis'>>=
+TAB <- table(x)
+xtable(TAB)
+@
+
+
 
 \end{document}
