@@ -1,0 +1,21 @@
+\documentclass{article}
+
+\begin{document}
+
+\section{First Heading}
+
+This is our first knitr document.
+
+<<echo=TRUE, results='markup'>>=
+x <- 1:10
+plot(x)
+print(x)
+@
+
+<<echo=TRUE, results='asis'>>=
+x <- 1:10
+plot(x)
+print(x)
+@
+
+\end{document}
