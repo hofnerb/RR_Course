@@ -1,0 +1,36 @@
+---
+title: "A toy SAS example"
+author: "Benjamin Hofner & Annette Pfahlberg"
+date: "Friday, 13."
+output: pdf_document
+---
+
+```{r, engine='sas', engine.path='C:/Program Files/SASHome_V-9-4/SASFoundation/9.4/sas.exe'}
+data daten2;
+do x=1 to 10;
+y=x**2; output;
+end;
+
+proc freq;
+tables x;
+run;
+
+proc reg;
+model y = x;
+run;
+
+data daten;
+do x=1 to 1000;
+y=x**2; output;
+end;
+
+/* not working 
+proc gplot;
+plot y*x;
+run; */
+
+/* working but ugly
+proc plot;
+plot y*x=".";
+run;*/
+```
