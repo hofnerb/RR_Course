@@ -59,6 +59,10 @@ rnorm(1)
 rnorm(10)
 @
 
+<<eval = FALSE>>=
+## extract code
+purl("first_knitr.Rnw", documentation = 1)
+@
 
 
 \end{document}
