@@ -1,68 +1,147 @@
 \documentclass{article}
+\usepackage{url}
 
 <<load_packages, include=FALSE>>=
 library("xtable")
 @
 
+\title{Reproducible Research -- Dortmund}
+\author{Benjamin Hofner\\ \url{benjamin.hofner@fau.de}}
+\date{15.03.2015}
 
 \begin{document}
 
-\section{First Heading}
+\maketitle
 
-This is our first knitr document.
+\section{Our first knitr document}
 
-<<test name, echo=TRUE, results='markup'>>=
+\subsection{Text chunks}
+
+This is our first knitr document. In the following, 
+we define a code chunk that defines \texttt{x} and 
+prints it:
+<<print_x, echo=TRUE, results='markup'>>=
 x <- 1:10
-plot(x)
 print(x)
 @
 
-<<echo=TRUE, results='asis', fig.width=5, fig.height = 5, out.width="0.4\\textwidth">>=
+The same where we print \texttt{x} as is ("asis"):
+<<print_x_as_is, echo=TRUE, results='asis'>>=
 x <- 1:10
-plot(x)
 print(x)
+@
+
+\subsection{Figure Chunks}
+
+To insert figures, we can simply plot these within a chunk.
+The label of the chunk is used as figure name:
+<<plot_x>>=
+plot(x)
+@
+
+We can also plot multiple figures within one chunk. If we set 
+\texttt{fig.with} and \texttt{fig.height}, we can define the
+size of the plotting device. With \texttt{out.width} we define 
+the width of the final plot within the PDF. To first write the
+echo and then print the figures (together), we can use the option
+\texttt{fig.show = 'hold'}:
+<<two_figures, fig.width=5, fig.height = 5, out.width="0.4\\textwidth", fig.show='hold'>>=
+plot(x)
 plot(rnorm(100))
 @
 
-% A latex comment
-
-<<init, include=FALSE>>=
-## from now on no echo
-opts_chunk$set(echo = FALSE)
+We can also use labels with spaces. Spaces are replaced by underscores 
+in the final figure names automatically:
+<<label with spaces, out.width="0.4\\textwidth">>=
+plot(1:5)
 @
 
-% For tables uses results = "asis"
-<<create_table, results='asis'>>=
+\subsection{Comments and global options}
+
+To write comments, we can use Latex comments outside the code chunks (see source document) % A latex comment
+and R comments with code chunks.
+
+<<init>>=
+## from now on no syntax higlighting
+opts_chunk$set(highlight = FALSE)
+@
+
+Usually, one would set these options in the beginning and 
+use the chunk option \texttt{include = FALSE} to hide this 
+chunk.
+
+\subsection{Tables}
+
+To create tables, one uses for example the package \textbf{xtable}. 
+Note that this package needs to be loaded first. Here, we
+do this in the very first chunk \texttt{load\_packages}.
+Without this, we get results such as:
+<<create_table>>=
 TAB <- table(x)
+TAB
+@
+
+With xtable, we get:
+<<pretty_table, results='asis'>>=
 xtable(TAB)
 @
 
+\subsection{Use cache to speed up computations}
 
-Now use cache to speed up computations.
+Now use cache to speed up computations. This needs some extra 
+care to define dependencies, correctly reproducible random number
+generation etc. Please have a look at the slides and the references
+therein.
 
 <<first_cache, cache=TRUE>>=
-Sys.sleep(2)
+## use Sys.sleep to see that it is only executed in the first run
+Sys.sleep(5)
 plot(1:3, main = "cached figure", xlab = "x")
 @
 
+To see the effect on random numbers, within cache, we first set a 
+seed and generate 100 random numbers:
 <<random, cache=TRUE>>=
 set.seed(1234)
-rnorm(100)
+y <- rnorm(100)
+mean(y)
 @
 
+The following is to show, that the next chunk needs to be revaluated. Without
+the additional \texttt{rnorm} we would expect different random numbers
+than with this chunk.
 <<>>=
 rnorm(1)
 @
 
-
-<<cache = TRUE, random_seed = rand_seed>>=
+To make the reevaluation happen, we need to set an additional
+chunk option with an arbitrary name that has the value \texttt{rand\_seed}
+(\texttt{rand\_seed} is an unevaluated function with is evaluated each time it
+is called in a chunk option and which returns the current seed status).
+<<cache = TRUE, cache.seed = rand_seed>>=
 rnorm(10)
 @
 
-<<eval = FALSE>>=
-## extract code
-purl("first_knitr.Rnw", documentation = 1)
+To make this automatically happen for all chunks, we could also define a global
+option at the beginning of the document:
+<<random_seed>>=
+opts_chunk$set(cache.seed = rand_seed)
 @
 
+\subsection{Purl: Extracting the source code}
+
+The command \texttt{purl} can be used to extract the source code.
+Here, it is not evaluated. To extract the source code of this document
+make sure that the working directory is set to the locaction of this
+file and send the following two lines to your console (CTRL-Enter):
+<<eval = FALSE>>=
+library("knitr")
+## extract code.
+purl("first_knitr.Rnw", documentation = 1)
+@
+To extract code without comments that show the options
+used for the cunks, one could use \texttt{documentation = 0}. To get
+all the text as comments (rxoygen style comments to be exact), one can 
+use \texttt{documentation = 2}.
 
 \end{document}
