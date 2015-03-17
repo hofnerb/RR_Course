@@ -22,7 +22,7 @@ This is a short tutorial that covers some of the features of package **papeR**.
 ## Installation
 
 To install the latest development version, one can use 
-**devtools** to install packages from [github](http://github.com/hofnerb/papeR).
+**devtools** to install packages from [GitHub](http://github.com/hofnerb/papeR).
 
 ```{r install_devtools, eval=FALSE}
 install.packages("devtools")
@@ -100,4 +100,62 @@ plot(data, with = "b")
 
 ## Summary tables
 
-t.b.c.
+For LaTeX based reports, one can use the commands `latex.table.cont()` 
+and `latex.table.fac()` to automatically produce summary tables for either
+continuous variables or factors. 
+```{r}
+data(Orthodont, package = "nlme")
+latex.table.cont(Orthodont)
+latex.table.fac(Orthodont, variables = "Sex")
+```
+
+Again, one can specify `group` to obtain grouped statistcis. In this
+case, one also gets `test`s for group differences:
+```{r}
+latex.table.cont(Orthodont, group = "Sex")
+```
+
+
+A non-latex version is currently under consideration.
+
+## Prettify output
+
+To prettify the output of a linear model, one can use the function
+`prettify()`. This function adds confidence intervals, properly 
+prints p-values, adds significance stars to the output (if desired) 
+and additionally adds pretty formating for factors.
+```{r}
+linmod <- lm(distance ~ age + Sex, data = Orthodont)
+## Extract pretty summary
+(pretty_lm <- prettify(summary(linmod)))
+```
+
+The resulting table can now be formated for printing
+using packages like **xtable** for LaTeX 
+```{r}
+library("xtable")
+xtable(pretty_lm)
+```
+which can be used with the option `results='asis'` in LaTeX,
+or the function `kable()` for markdown:
+```{r, results='asis'}
+kable(pretty_lm)
+```
+
+### Supported objects
+
+The function `prettify` is implemented for objects of the following classes:
+
+* `lm` (linear models)
+* `glm` (generalized linear models)
+* `coxph` (Cox proportional hazards models)
+* `lme` (linear mixed models; implemented in package **nlme**)
+* `mer` (linear mixed models; implemented in package **lme4**, vers < 1.0)
+* `merMod` (linear mixed models; implemented in package **lme4**, vers. >= 1.0)
+* `anova` (anova objects)
+
+## Outlook
+
+This package is currently under ative development. Feature requests, bug reports, or
+patches that either add new features or fix bugs are always welcome. 
+Please use the [GitHub](http://github.com/hofnerb/papeR) page.
