@@ -1,0 +1,45 @@
+---
+title: "Using package papeR"
+author: "Benjamin Hofner"
+date: "Tuesday, March 17, 2015"
+output:
+  html_document:
+    keep_md: yes
+---
+
+```{r init_global_options, include=FALSE}
+library("knitr")
+options(knitr.table.format = 'markdown')
+opts_chunk$set(message = FALSE, warning = FALSE)
+```
+
+
+# A short tutorial for package **papeR**
+
+This is a short tutorial that covers some of the features of package **papeR**.
+
+## Installation
+
+To install the latest development version, one can use 
+**devtools** to install packages from [github](http://github.com/hofnerb/papeR).
+
+```{r install_devtools, eval=FALSE}
+install.packages("devtools")
+```
+
+Now we can load **devtools** to install **papeR**:
+```{r install_papeR, eval=FALSE}
+library("devtools")
+install_github("hofnerb/papeR")
+```
+(note that this chunk is not evaluated automatically).
+
+## Loading the package
+
+Now we can load the package:
+```{r load_pkg}
+library("papeR")
+```
+
+## Start using the package:
+
