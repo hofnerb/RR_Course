@@ -10,7 +10,7 @@ output:
 ```{r initialization, include=FALSE}
 library("knitr")
 options(knitr.table.format = 'markdown')
-opts_chunk$set(message = FALSE, warning = FALSE)
+opts_chunk$set(message = FALSE, warning = FALSE, fig.path = "papeR_manual/fig-")
 set.seed(1234)
 ```
 

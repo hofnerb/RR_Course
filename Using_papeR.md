@@ -103,7 +103,7 @@ par(mfrow = c(2, 2))
 plot(data)
 ```
 
-![](Using_papeR_files/figure-html/plot_labeled_dataframe-1.png) 
+![](papeR_manual/fig-plot_labeled_dataframe-1.png) 
 
 As one can see, the plot type is automatically determined 
 based on the data type and the axis label is defiened by
@@ -116,7 +116,7 @@ par(mfrow = c(1, 2))
 plot(data, by = "c")
 ```
 
-![](Using_papeR_files/figure-html/grouped_plot-1.png) 
+![](papeR_manual/fig-grouped_plot-1.png) 
 
 We can as well plot everything against a metrical variable:
 
@@ -125,7 +125,7 @@ par(mfrow = c(1, 2))
 plot(data, with = "b")
 ```
 
-![](Using_papeR_files/figure-html/with_x-1.png) 
+![](papeR_manual/fig-with_x-1.png) 
 
 ## Summary tables
 
