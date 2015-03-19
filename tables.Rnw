@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{booktabs}
+ 
+\begin{document}
+
+<<load_pkg, include=FALSE>>=
+library("papeR")
+@
+
+\subsection*{Summary tables}
+
+For LaTeX based reports, one can use the commands \texttt{latex.table.cont()}
+and \texttt{latex.table.fac()} to automatically produce summary tables for either
+continuous variables or factors. 
+<<results='asis', echo=FALSE, warning=FALSE>>=
+data(Orthodont, package = "nlme")
+latex.table.cont(Orthodont)
+latex.table.fac(Orthodont, variables = "Sex")
+@
+
+Again, one can specify \texttt{group} to obtain grouped statistcis. In this
+case, one also gets \texttt{test}s for group differences:
+<<results='asis', echo=FALSE, warning=FALSE>>=
+latex.table.cont(Orthodont, group = "Sex", test = FALSE)
+@
+
+
+\end{document}
