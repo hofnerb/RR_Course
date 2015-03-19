@@ -11,10 +11,12 @@ Material from RR course in Dortmund:
 - [`first_knitr.Rnw`](first_knitr.Rnw) is the main knitr document as produced in the course 
   (with some small changes and better documentation).
   - [`first_knitr.R`](first_knitr.R) is the result from running `purl` on the knitr document `first_knitr.Rnw`.
+- [`tables.Rnw`](tables.Rnw) an example that shows the results of `papeR::latex.table.xxx()`
 
 ## Especially for all participants of the workhop: 
 Please feel free to download the material, fork the repository or add patches or to add an issue (i.e., question, bug report, ...).
 
-## Manual for package [papeR](http://github.com/hofnerb/papeR)
+## Package [papeR](http://github.com/hofnerb/papeR)
 
-Simply click on [`Using_papeR.Rm`](Using_papeR.Rm).
+- For a manual simply click on [`Using_papeR.Rm`](Using_papeR.Rm).
+- An example of summary tables that were created using `papeR::latex.table.xxx()` is given in [`tables.Rnw`](tables.Rnw).
