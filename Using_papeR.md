@@ -177,29 +177,29 @@ Again, one can specify `group` to obtain grouped statistcis. In this
 case, one also gets `test`s for group differences:
 
 ```r
-latex.table.cont(Orthodont, group = "Sex")
+latex.table.cont(Orthodont, group = "Sex", test = FALSE)
 ```
 
 ```
 ## %% Output requires \usepackage{booktabs}.
 ## \begin{center}
-## \begin{tabular}{lrrrrrrrrrrrrrr} 
+## \begin{tabular}{lrrrrrrrrrrrr} 
 ##   \toprule 
-##   & Sex &   & N &   & Mean & SD &   & Min & Q1 & Median & Q3 & Max &   & p.value \\ 
-##   \cmidrule{4-4}  \cmidrule{6-7} \cmidrule{9-15}
-## distance & Male &  & 64 &  & 24.97 & 2.90 &  & 17.0 & 23 & 24.75 & 26.50 & 31.5 &  & NA  \\ 
-##  & Female &  & 44 &  & 22.65 & 2.40 &  & 16.5 & 21 & 22.75 & 24.25 & 28.0 &  &   \\ 
-##   \cmidrule{4-4}  \cmidrule{6-7} \cmidrule{9-15}
-##  age & Male &  & 64 &  & 11.00 & 2.25 &  &  8.0 &  9 & 11.00 & 13.00 & 14.0 &  & 1  \\ 
-##  & Female &  & 44 &  & 11.00 & 2.26 &  &  8.0 &  9 & 11.00 & 13.00 & 14.0 &  &   \\ 
+##   & Sex &   & N &   & Mean & SD &   & Min & Q1 & Median & Q3 & Max \\ 
+##   \cmidrule{4-4}  \cmidrule{6-7} \cmidrule{9-13}
+## distance & Male &  & 64 &  & 24.97 & 2.90 &  & 17.0 & 23 & 24.75 & 26.50 & 31.5  \\ 
+##  & Female &  & 44 &  & 22.65 & 2.40 &  & 16.5 & 21 & 22.75 & 24.25 & 28.0  \\ 
+##   \cmidrule{4-4}  \cmidrule{6-7} \cmidrule{9-13}
+##  age & Male &  & 64 &  & 11.00 & 2.25 &  &  8.0 &  9 & 11.00 & 13.00 & 14.0  \\ 
+##  & Female &  & 44 &  & 11.00 & 2.26 &  &  8.0 &  9 & 11.00 & 13.00 & 14.0  \\ 
 ##   \bottomrule 
 ## \end{tabular} 
 ## 
 ## \end{center}
 ```
 
+> **A non-latex version is currently under construction.**
 
-A non-latex version is currently under consideration.
 
 ## Prettify output
 
@@ -235,7 +235,7 @@ xtable(pretty_lm)
 
 ```
 ## % latex table generated in R 3.1.2 by xtable 1.7-4 package
-## % Tue Mar 17 18:40:16 2015
+## % Thu Mar 19 15:44:28 2015
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rlrrrrrll}

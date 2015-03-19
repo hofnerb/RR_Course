@@ -112,11 +112,11 @@ latex.table.fac(Orthodont, variables = "Sex")
 Again, one can specify `group` to obtain grouped statistcis. In this
 case, one also gets `test`s for group differences:
 ```{r}
-latex.table.cont(Orthodont, group = "Sex")
+latex.table.cont(Orthodont, group = "Sex", test = FALSE)
 ```
 
+> **A non-latex version is currently under construction.**
 
-A non-latex version is currently under consideration.
 
 ## Prettify output
 
