@@ -176,6 +176,6 @@ The function `prettify` is *currently* implemented for objects of the following 
 
 ## Outlook
 
-This package is currently under ative development. Feature requests, bug reports, or
+This package is currently under active development. Feature requests, bug reports, or
 patches that either add new features or fix bugs are always welcome. 
 Please use the [GitHub](http://github.com/hofnerb/papeR) page.
